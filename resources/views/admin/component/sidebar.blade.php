@@ -40,7 +40,7 @@
     </li>
 
     <li class="nav-item active">
-        <a class="nav-link collapsed" href="#" >
+        <a class="nav-link collapsed" href="datapesanan" >
             <i class="fas fa-fw fa-solid fa-file-invoice-dollar"></i>
             <span>Data Pesanan</span>
         </a>
