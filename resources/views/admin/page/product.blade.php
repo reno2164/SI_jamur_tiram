@@ -4,10 +4,7 @@
 <div class="card rounded-full">
     <div class="card-header bg-transparent d-flex justify-content-between">
         <a href="{{route('product.create')}}" class="btn btn-info">
-            <i class="fa fa-plus">
-                <span>Tambah Product</span>
-            </i>
-        </a>
+            <i class="fa-solid fa-plus"></i>Tambah Produk</a>
         <input type="text" wire:model="search" class="form-control w-25" placeholder="Search....">
     </div>
     <div class="card-body">
@@ -23,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse ($products as $no=>$product)
+                @forelse ($products as $no => $product)
                     <tr>
                         <td>{{ $no + 1 }}</td>
                         <td class="text-center">
@@ -36,14 +33,13 @@
                         <td class="">
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                 action="{{ route('product.destroy', $product->id) }}" method="POST">
-                                <a href="{{ route('product.show', $product->id) }}"
-                                    class="btn btn-sm btn-dark"><i class="fa-solid fa-eye"></i></a>
-                                <a href="{{ route('product.edit', $product->id) }}"
-                                    class="btn btn-sm btn-warning"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ route('product.show', $product->id) }}" class="btn btn-sm btn-dark"><i
+                                        class="fa-solid fa-eye"></i></a>
+                                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-sm btn-warning"><i
+                                        class="fa fa-pencil"></i></a>
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger"><i
-                                        class="fa fa-trash"></i></button>
+                                <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                             </form>
                         </td>
                     </tr>
