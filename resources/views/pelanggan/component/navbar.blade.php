@@ -30,7 +30,9 @@
                         <a href="/transaksi" class="fs-5 nav-link {{ Request::path() == 'transaksi' ? 'active' : '' }}">
                             <i class="fa-solid fa-cart-plus"></i>
                         </a>
-                        <div class="circle">10</div>
+                        @if ($count)
+                            <div class="circle">{{ $count }}</div>
+                        @endif
                     </div>
                 </li>
                 @auth

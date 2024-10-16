@@ -9,7 +9,7 @@ Route::get('/shop', [Controller::class, 'shop'])->name('shop');
 Route::get('/transaksi', [Controller::class, 'transaksi'])->name('transaksi');
 Route::get('/contact', [Controller::class, 'contact'])->name('contact');
 
-
+Route::POST('/addTocart', [ProductController::class, 'addTocart'])->name('addTocart');
 Route::get('/admin', [Controller::class, 'admin'])->name('admin');
 
 Route::resource('admin/product', ProductController::class);

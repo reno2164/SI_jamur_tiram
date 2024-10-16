@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 //import model product
+
+use App\Models\cart;
 use App\Models\Product; 
 
 //import return type View
@@ -181,5 +183,21 @@ class ProductController extends Controller
 
         //redirect to index
         return redirect()->route('product.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+    public function addTocart(Request $request)
+    {
+        $idProduct = $request->input('idProduct');
+
+        $db = new cart ;
+        $product = product::find($idProduct);
+        $field = [
+            'idUser'    => 'guest123',
+            'id_barang' => $idProduct,
+            'qty'       => 1,
+            'price'     => $product->price,
+        ];
+
+        $db::create($field);
+        return redirect('/shop');
     }
 }
