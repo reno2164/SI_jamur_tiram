@@ -9,13 +9,13 @@
             <ul class="navbar-nav gap-4">
                 <li class="nav-item my-auto">
                     <a class="nav-link {{ Request::path() == '/' ? 'active' : '' }}" aria-current="page"
-                        href="/">Home</a>
+                        href="/">Beranda</a>
                 </li>
                 <li class="nav-item my-auto">
-                    <a class="nav-link {{ Request::path() == 'shop' ? 'active' : '' }}" href="/shop">Shop</a>
+                    <a class="nav-link {{ Request::path() == 'shop' ? 'active' : '' }}" href="/shop">Belanja</a>
                 </li>
                 <li class="nav-item my-auto">
-                    <a class="nav-link {{ Request::path() == 'contact' ? 'active' : '' }}" href="/contact">Contact
+                    <a class="nav-link {{ Request::path() == 'contact' ? 'active' : '' }}" href="/contact">Kontak
                         </a>
                 </li>
                 <li class="nav-item my-auto">
@@ -57,7 +57,7 @@
                     <li class="nav-item my-auto">
                         <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">
-                            Login</button>
+                            Masuk</button>
                     </li>
                 @endauth
             </ul>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -13,8 +14,7 @@ Route::POST('/addTocart', [ProductController::class, 'addTocart'])->name('addToc
 Route::get('/admin', [Controller::class, 'admin'])->name('admin');
 
 Route::resource('admin/product', ProductController::class);
+Route::resource('admin/pegawai', PegawaiController::class);
 
-Route::get('/admin/pegawai', [Controller::class, 'pegawai'])->name('pegawai');
-Route::get('/admin/pelanggan', [Controller::class, 'pelanggan'])->name('pelanggan');
 Route::get('/admin/dataPenjualan', [Controller::class, 'dataPenjualan'])->name('dataPenjualan');
 

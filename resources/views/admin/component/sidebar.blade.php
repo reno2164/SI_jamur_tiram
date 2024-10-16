@@ -25,7 +25,7 @@
 
 
     <li class="nav-item active">
-        <a class="nav-link collapsed" href="admin/product">
+        <a class="nav-link collapsed" href="{{route('pegawai.index')}}">
             <i class="fas fa-fw fa-solid fa-user"></i>
             <span>Pegawai</span>
         </a>
