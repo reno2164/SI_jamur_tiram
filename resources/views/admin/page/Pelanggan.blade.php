@@ -16,6 +16,7 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Alamat</th>
                             <th scope="col">No. Telp</th>
@@ -26,8 +27,9 @@
                         @foreach ($pelanggan as $p)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ $p->email }}</td>
                                 <td>{{ $p->nama }}</td>
-                                <td>{{ $p->alamat }}</td>
+                                <td>{{ $p->alamat }}</td> 
                                 <td>{{ $p->no_telpon }}</td>
                                 <td>
                                     <a href="{{ route('pelanggan.edit', $p->id) }}" class="btn btn-sm btn-warning"><i
@@ -54,7 +56,7 @@
                                             Apakah Anda yakin ingin menghapus pegawai ini?
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('pegawai.destroy', $p->id) }}" method="POST">
+                                            <form action="{{ route('pelanggan.destroy', $p->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Hapus</button>
