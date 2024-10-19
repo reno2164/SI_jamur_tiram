@@ -39,5 +39,5 @@
     </div>
 </div>
 <div class="text-center p-lg-4 mt-3">
-    Copy right | jamur tiram 2024</i>
+    Copy right &copy; jamur tiram 2024</i>
 </div>

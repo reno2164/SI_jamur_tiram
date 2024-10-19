@@ -5,17 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cart extends Model
+class pembelian extends Model
 {
     use HasFactory;
+    protected $table = 'pembelians';
+    public $timestamps = true;
     protected $fillable = [
-        'idUser',
-        'id_barang',
+        'id_pembelian',
+        'id_product',
         'qty',
         'price',
+        'status',
     ];
+
+    
     public function product()
     {
-        return $this->hasOne(product::class, 'id', 'id_barang');
+        return $this->hasOne(product::class, 'id', 'id_product');
     }
 }

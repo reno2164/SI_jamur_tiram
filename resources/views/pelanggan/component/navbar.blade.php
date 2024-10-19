@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark navbar-expand-lg" style="background-color: #49443a">
     <div class="container">
-        <a class="navbar-brand fs-6" href="#">Jamur Tiram <br>Putra Pandawa</a>
+        <a class="navbar-brand fs-6" href="/">Jamur Tiram <br>Putra Pandawa</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
                 </li>
                 <li class="nav-item my-auto">
                     <div class="notif">
-                        <a href="/transaksi" class="fs-5 nav-link {{ Request::path() == 'transaksi' ? 'active' : '' }}">
+                        <a href="/keranjang" class="fs-5 nav-link {{ Request::path() == 'keranjang' ? 'active' : '' }}">
                             <i class="fa-solid fa-cart-plus"></i>
                         </a>
                         @if ($count)

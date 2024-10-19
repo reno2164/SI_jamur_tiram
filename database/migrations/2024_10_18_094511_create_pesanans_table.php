@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
-            $table->string("title");
-            $table->string("image");
-            $table->bigInteger("price");
-            $table->integer("stok")->default(0);
-            $table->integer('qty_out')->default(0);
-            $table->text("description");
+            $table->string('code_pembelian');
+            $table->string('total_qty');
+            $table->string('total_harga');
+            $table->string('nama_customer');
+            $table->string('alamat');
+            $table->string('no_tlp');
+            $table->enum('status', ['belum bayar','sudah bayar']);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('pesanans');
     }
 };

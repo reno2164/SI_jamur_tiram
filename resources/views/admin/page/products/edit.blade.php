@@ -77,7 +77,7 @@
                         </div>
 
                         <button type="submit" class="btn btn-md btn-primary me-3">UPDATE</button>
-                        <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                        <a href="{{route('product.index')}}" class="btn btn-md btn-danger">BATAL</a>
 
                     </form> 
                 </div>

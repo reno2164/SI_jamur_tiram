@@ -24,7 +24,7 @@
     </li>
 
 
-    <li class="nav-item active">
+    <li class="nav-item active {{ Request::path() === 'admin/pegawai' ? 'badge text-bg-info' : '' }}">
         <a class="nav-link collapsed" href="{{route('pegawai.index')}}">
             <i class="fas fa-fw fa-solid fa-user"></i>
             <span>Pegawai</span>
@@ -42,7 +42,7 @@
     <li class="nav-item active">
         <a class="nav-link collapsed" href="datapesanan" >
             <i class="fas fa-fw fa-solid fa-file-invoice-dollar"></i>
-            <span>Data Pesanan</span>
+            <span>Transaksi</span>
         </a>
     </li>
 

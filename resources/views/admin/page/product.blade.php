@@ -20,6 +20,11 @@
                 </tr>
             </thead>
             <tbody>
+                @if ($products->isEmpty())
+                        <tr class="text-center">
+                            <td colspan="6">Belum ada produk</td>
+                        </tr>
+                    @else
                 @forelse ($products as $no => $product)
                     <tr>
                         <td>{{ $no + 1 }}</td>
@@ -48,6 +53,7 @@
                         Data Products belum Tersedia.
                     </div>
                 @endforelse
+                @endif
             </tbody>
         </table>
         <div class="pagination d-flex flex-row justify-content-between">

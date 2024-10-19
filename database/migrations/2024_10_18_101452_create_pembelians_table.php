@@ -11,19 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pebelians', function (Blueprint $table) {
+        Schema::create('pembelians', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_pembelian');
             $table->unsignedBigInteger('id_product');
-            $table->unsignedBigInteger('id_pelanggan');
-            // $table->unsignedBigInteger('id_datapenjualan');
-            $table->string('status');
-            // $table->string('total_bayar');
-            $table->string('jenis_pengiriman');
-            $table->string('pilih_pembayaran');
+            $table->integer('qty');
+            $table->bigInteger('price');
+            $table->integer('status')->default(0);
             $table->timestamps();
 
             $table->foreign('id_product')->references('id')->on('products');
-            // $table->foreign('id_pelanggan')->references('id')->on('planggan');
         });
     }
 
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pebelians');
+        Schema::dropIfExists('pembelians');
     }
 };

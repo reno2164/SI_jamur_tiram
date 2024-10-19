@@ -30,9 +30,10 @@ class ProductController extends Controller
     {
         //get all products
         $products = Product::latest()->paginate(10);
-
+        $best = product::where('qty_out','>=',5)->get();
         //render view with products
-        return view('admin.page.product',['title'=>'halaman Products','name'=>'Produk'], compact('products'));
+        return view('admin.page.product',['title'=>'halaman Products','name'=>'Produk'], 
+        compact('products','best'));
     }
 
     /**
@@ -68,7 +69,7 @@ class ProductController extends Controller
 
         //create product
         Product::create([
-            'image'         => $image->hashName(),
+            'image'         => $image->hashName(),   
             'title'         => $request->title,
             'description'   => $request->description,
             'price'         => $request->price,
@@ -88,6 +89,7 @@ class ProductController extends Controller
     public function show(string $id): View
     {
         //get product by ID
+        
         $product = Product::findOrFail($id);
 
         //render view with product
@@ -178,6 +180,7 @@ class ProductController extends Controller
         //delete image
         Storage::delete('public/products/'. $product->image);
 
+        cart::where('id_barang', $id)->delete();
         //delete product
         $product->delete();
 
@@ -185,6 +188,22 @@ class ProductController extends Controller
         return redirect()->route('product.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
     public function addTocart(Request $request)
+    {
+        $idProduct = $request->input('idProduct');
+
+        $db = new cart ;
+        $product = product::find($idProduct);
+        $field = [
+            'idUser'    => 'guest123',
+            'id_barang' => $idProduct,
+            'qty'       => 1,
+            'price'     => $product->price,
+        ];
+
+        $db::create($field);
+        return redirect('/shop');
+    }
+    public function addTocarthome(Request $request)
     {
         $idProduct = $request->input('idProduct');
 
