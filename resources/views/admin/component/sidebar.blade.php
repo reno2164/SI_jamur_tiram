@@ -33,7 +33,7 @@
 
 
     <li class="nav-item active">
-        <a class="nav-link collapsed" href="#" >
+        <a class="nav-link collapsed" href="{{route('pelanggan.index')}}" >
             <i class="fas fa-fw fa-solid fa-users"></i>
             <span>Pelanggan</span>
         </a>

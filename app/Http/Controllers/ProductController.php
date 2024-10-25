@@ -205,7 +205,7 @@ class ProductController extends Controller
     }
     public function addTocarthome(Request $request)
     {
-        $idProduct = $request->input('idProduct');
+        $idProduct = $request->input(key: 'idProduct');
 
         $db = new cart ;
         $product = product::find($idProduct);
@@ -217,6 +217,6 @@ class ProductController extends Controller
         ];
 
         $db::create($field);
-        return redirect('/shop');
+        return redirect('/');
     }
 }

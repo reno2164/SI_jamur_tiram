@@ -10,7 +10,7 @@
 
 <body>
     <div class="container mt-5">
-        <h2>Tambah Pegawai</h2>
+        <h2>Tambah Pegawaii</h2>
 
         <!-- Form tambah pegawai -->
         <form action="{{ route('pegawai.store') }}" method="POST">
