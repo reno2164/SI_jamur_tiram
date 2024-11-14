@@ -10,7 +10,7 @@
 
 <body>
     <div class="container mt-5">
-        <h2>Tambah Pegawaii</h2>
+        <h2>Tambah Pegawai</h2>
 
         <!-- Form tambah pegawai -->
         <form action="{{ route('pegawai.store') }}" method="POST">
@@ -29,17 +29,6 @@
                 <label for="no_telpon" class="form-label">No. Telp</label>
                 <input type="number" name="no_telpon" class="form-control" id="no_telpon" required>
             </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" name="email" class="form-control" id="email" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" id="password" required>
-            </div>
-
 
             <button type="submit" class="btn btn-primary">Simpan</button>
         </form>

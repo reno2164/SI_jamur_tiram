@@ -14,7 +14,7 @@ Route::get('/keranjang', [Controller::class, 'keranjang'])->name('keranjang');
 Route::get('/contact', [Controller::class, 'contact'])->name('contact');
 
 Route::post('/prosescheckOut/{id}', [Controller::class, 'prosescheckOut'])->name('prosescheckOut');
-Route::get('/checkOut/{id}', [Controller::class, 'checkOut'])->name('checkOut');
+Route::get('/checkOut', [Controller::class, 'checkOut'])->name('checkOut');
 
 Route::POST('/addTocart', [ProductController::class, 'addTocart'])->name('addTocart');
 Route::POST('/addTocarthome', [ProductController::class, 'addTocarthome'])->name('addTocarthome');

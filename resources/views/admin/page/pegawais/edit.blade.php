@@ -31,20 +31,8 @@
 
             <div class="mb-3">
                 <label for="no_telpon" class="form-label">No. Telp</label>
-                <input type="text" class="form-control" id="no_telpon" name="no_telpon"
+                <input type="number" class="form-control" id="no_telpon" name="no_telpon"
                     value="{{ $pegawai->no_telpon }}" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email"
-                    value="{{ $pegawai->email }}" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="text" class="form-control" id="password" name="password"
-                    value="{{ $pegawai->password }}" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Update</button>
@@ -56,4 +44,4 @@
         crossorigin="anonymous"></script>
 </body>
 
-</html> 
+</html>

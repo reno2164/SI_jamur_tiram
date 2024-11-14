@@ -2,25 +2,75 @@
 
 @section('content')
     <style>
+        /* Menghilangkan spinner pada input */
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
 
-        /* Custom styling for buttons */
-        .minus,
-        .plus {
-            font-size: 16px;
-            padding: 8px;
-            cursor: pointer;
+        .card {
+            border: none;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .card-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
             align-items: center;
         }
 
+        img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .desc {
+            flex-grow: 1;
+        }
+
+        .desc p {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .row.mb-2,
+        .row {
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-control.qty {
+            max-width: 100px;
+            text-align: center;
+            margin-left: 10px;
+        }
+
+        .form-control.total {
+            max-width: 150px;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        /* Button Styling */
+        .btn-success,
         .btn-danger {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn-danger {
+            background-color: #ff4c4c;
             transition: background-color 0.3s ease;
         }
 
@@ -28,19 +78,20 @@
             background-color: #dc3545;
         }
 
-        /* Responsive styling */
+        /* Responsiveness */
         @media (max-width: 768px) {
             .card-body {
                 flex-direction: column;
+                text-align: center;
             }
 
             img {
-                width: 100%;
+                max-width: 100%;
             }
         }
     </style>
 
-    <!-- Page Title -->
+    <!-- Judul Halaman -->
     <div class="container mt-5">
         <h3 class="mb-5 text-center">Keranjang Belanja</h3>
 
@@ -49,42 +100,36 @@
         @else
             @foreach ($data as $x)
                 <div class="card mb-3">
-                    <div class="card-body d-flex gap-4">
-                        <img src="{{ asset('storage/products/' . $x->product->image) }}" width="300" alt="">
-                        <form action="{{ route('prosescheckOut', ['id' => $x->id]) }}" method="POST">
+                    <div class="card-body">
+                        <img src="{{ asset('storage/products/' . $x->product->image) }}" alt="Gambar Produk">
+                        <form action="{{ route('prosescheckOut', ['id' => $x->id]) }}" method="POST" class="desc">
                             @csrf
-                            <div class="desc w-100">
-                                <p style="font-size:24px; font-weight:700;">{{ $x->product->title }}</p>
-                                <input type="hidden" name="idBarang" value="{{ $x->product->id }}">
-                                <input type="number" class="form-control border-0 fs-1" name="harga" id="harga"
-                                    value="{{ $x->product->price }}">
-                                <div class="row mb-2">
-                                    <label for="qty" class="col-sm-2 col-form-label fs-5">Quantity</label>
-                                    <div class="col-sm-5 d-flex">
-                                        <button class="rounded-start bg-secondary p-2 border border-0 plus"
-                                            id="plus">+</button>
-                                        <input type="number" name="qty" class="form-control w-25 text-center qty"
-                                            id="qty" name="qty" value="{{ $x->qty }}">
-                                        <button class="rounded-end bg-secondary p-2 border border-0 minus" id="minus"
-                                            disabled>-</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label for="price" class="col-sm-2 col-form-label fs-5">Total</label>
-                                    <input type="text" class="col-sm-2 form-control w-25 border-0 fs-4 total"
-                                        name="total" readonly id="total">
-                                </div>
-                                <div class="row w-50 gap-1">
-                                    <button type="submit" class="btn btn-success col-sm-5">
-                                        <i class="fa fa-shopping-cart"></i>
-                                        Checkout
-                                    </button>
+                            <p>{{ $x->product->title }}</p>
+                            <input type="hidden" name="idBarang" value="{{ $x->product->id }}">
+                            <input type="hidden" class="form-control border-0 fs-1" name="harga" id="harga"
+                                value="2000" readonly>
 
-                                    <button type="submit" class="btn btn-danger col-sm-5">
-                                        <i class="fa fa-trash-alt"></i>
-                                        Delete
-                                    </button>
+                            <div class="row mb-2">
+                                <label for="qty" class="col-sm-3 col-form-label fs-6">Jumlah (gram)</label>
+                                <div class="col-sm-4">
+                                    <input type="number" name="qty" class="form-control qty" id="qty"
+                                        min="1" placeholder="Masukkan berat dalam gram" required>
                                 </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <label for="total" class="col-sm-3 col-form-label fs-5">Total</label>
+                                <input type="text" class="form-control total" name="total" readonly id="total">
+                            </div>
+
+                            <div class="row gap-2">
+                                <button type="submit" class="btn btn-success col-sm-5">
+                                    <i class="fa fa-shopping-cart"></i> Checkout
+                                </button>
+
+                                <button type="submit" class="btn btn-danger col-sm-5">
+                                    <i class="fa fa-trash-alt"></i> Delete
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -92,49 +137,25 @@
             @endforeach
         @endif
     </div>
+
     <script>
         $(document).ready(function() {
-            $(".plus").click(function(e) {
-                e.preventDefault();
-                var card = $(this).closest(".card-body");
-                var harga = card.find("#harga").val();
-                var qty = card.find("#qty").val();
-
-                var tambah = parseInt(qty) + 1;
-                card.find("#qty").val(tambah);
-
-                var subtotal = parseInt(harga) * parseInt(tambah);
-                card.find(".total").val(subtotal);
-
-                if (qty > 0) {
-                    card.find(".minus").prop("disabled", false);
+            $(".qty").on('input', function() {
+                var qtyInput = $(this);
+                var qty = parseInt(qtyInput.val());
+    
+                if (qty < 0 || isNaN(qty)) {
+                    qty = 0;
+                    qtyInput.val(qty);
                 }
-            });
-
-            $(".minus").click(function(e) {
-                e.preventDefault();
-                var card = $(this).closest(".card-body");
-                var harga = card.find("#harga").val();
-                var qty = card.find("#qty").val();
-
-                var tambah = parseInt(qty) - 1;
-                card.find("#qty").val(tambah);
-
-                var subtotal = parseInt(harga) * parseInt(tambah);
-                card.find(".total").val(subtotal);
-
-                if (qty <= 1) {
-                    card.find(".minus").prop("disabled", true);
-                }
-            });
-
-            $(".card-body").each(function() {
-                var card = $(this);
-                var harga = card.find("#harga").val();
-                var qty = card.find("#qty").val();
-                var total = parseInt(harga) * parseInt(qty);
+    
+                var card = qtyInput.closest(".card-body");
+                var hargaPer100Gram = parseInt(card.find("#harga").val());
+                var total = (hargaPer100Gram / 100) * qty;
+    
                 card.find("#total").val(total);
             });
         });
     </script>
+    
 @endsection

@@ -25,16 +25,12 @@ class PegawaiController extends Controller
     {
         
         $request->validate([
-            'email' => 'required|string',
-            'password' => 'required|string',
             'nama' => 'required|string|max:255',
             'alamat' => 'required|string',
             'no_telpon' => 'required|numeric|digits_between:10,15',
         ]);
 
         Pegawai::create([
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_telpon' => $request->no_telpon,
@@ -60,8 +56,6 @@ class PegawaiController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'email' => 'required|string',
-            'password' => 'required|string',
             'nama' => 'required',
             'alamat' => 'required',
             'no_telpon' => 'required',
@@ -69,8 +63,6 @@ class PegawaiController extends Controller
 
         $pegawai = Pegawai::find($id);
         $pegawai->update([
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'no_telpon' => $request->no_telpon,

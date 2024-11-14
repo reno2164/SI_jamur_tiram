@@ -111,17 +111,16 @@ class Controller extends BaseController
             'codeTransaksi' => $codeTransaksi,
         ]);
     }
-    public function prosescheckOut(Request $request, $id)
+        public function prosescheckOut(Request $request, $id)
     {
         $data = $request->all();
-        // dd($data);die;
         $code = Pesanan::count();
-        $codeTransaksi = date('Ymd') . $code + 1;
-        
+        $codeTransaksi = date('Ymd') . ($code + 1);
+
         $pesanan = new pembelian();
         $fieldpesanan = [
             'id_pembelian' => $codeTransaksi,
-            'id_product'    => $data['idBarang'],
+            'id_product'   => $data['idBarang'],
             'qty'          => $data['qty'],
             'price'        => $data['total'],
             'status'       => 1,
@@ -129,12 +128,13 @@ class Controller extends BaseController
         $pesanan::create($fieldpesanan);
 
         $fieldCart = [
-            'qty'          => $data['qty'],
-            'price'        => $data['total'],
-            'status'       => 1,
+            'qty'    => $data['qty'],
+            'price'  => $data['total'],
+            'status' => 1,
         ];
         cart::where('id', $id)->update($fieldCart);
 
-        return redirect()->route('checkOut', ['id' => $id]);
+        // Arahkan pengguna ke halaman checkout tanpa id
+        return redirect()->route('checkOut');
     }
-}
+    }
